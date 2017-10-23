@@ -12,14 +12,14 @@
 namespace Hautelook\AliceBundle\Loader;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Hautelook\AliceBundle\LoaderInterface;
+use Hautelook\AliceBundle\OrmLoaderInterface;
 use Hautelook\AliceBundle\NotCallableTrait;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 
 /**
  * @author Théo FIDRY <theo.fidry@gmail.com>
  */
-class FakeLoader implements LoaderInterface
+class FakeOrmLoader implements OrmLoaderInterface
 {
     use NotCallableTrait;
 

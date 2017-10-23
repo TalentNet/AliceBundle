@@ -14,7 +14,7 @@ namespace Hautelook\AliceBundle\Loader;
 use Hautelook\AliceBundle\DataFixtures\Loader\FakeLoader;
 use Hautelook\AliceBundle\DataFixtures\Loader\FakeLoaderPersisterAware;
 use Hautelook\AliceBundle\FixtureLocator\FakeFixtureLocator;
-use Hautelook\AliceBundle\LoaderInterface;
+use Hautelook\AliceBundle\OrmLoaderInterface;
 use Hautelook\AliceBundle\Logger\FakeLogger;
 use Hautelook\AliceBundle\LoggerAwareInterface;
 use Hautelook\AliceBundle\Resolver\FakeBundleResolver;
@@ -28,7 +28,7 @@ class DoctrineOrmLoaderTest extends \PHPUnit_Framework_TestCase
 {
     public function testIsALoader()
     {
-        $this->assertTrue(is_a(DoctrineOrmLoader::class, LoaderInterface::class, true));
+        $this->assertTrue(is_a(DoctrineOrmLoader::class, OrmLoaderInterface::class, true));
     }
 
     public function testIsLoggerAware()

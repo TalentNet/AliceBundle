@@ -13,7 +13,7 @@ use Fidry\AliceDataFixtures\Persistence\PersisterAwareInterface;
 use Fidry\AliceDataFixtures\Persistence\PurgeMode;
 use Hautelook\AliceBundle\BundleResolverInterface;
 use Hautelook\AliceBundle\FixtureLocatorInterface;
-use Hautelook\AliceBundle\LoaderInterface as AliceBundleLoaderInterface;
+use Hautelook\AliceBundle\OrmLoaderInterface as AliceBundleLoaderInterface;
 use Hautelook\AliceBundle\LoggerAwareInterface;
 use Hautelook\AliceBundle\Resolver\File\KernelFileResolver;
 use Nelmio\Alice\IsAServiceTrait;

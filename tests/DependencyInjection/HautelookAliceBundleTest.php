@@ -117,7 +117,7 @@ class HautelookAliceBundleTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertInstanceOf(
-            \Hautelook\AliceBundle\LoaderInterface::class,
+            \Hautelook\AliceBundle\OrmLoaderInterface::class,
             $this->kernel->getContainer()->get('hautelook_alice.loader')
         );
 

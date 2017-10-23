@@ -17,7 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
 /**
  * @author Théo FIDRY <theo.fidry@gmail.com>
  */
-interface LoaderInterface
+interface OrmLoaderInterface
 {
     /**
      * Loads the specified fixtures of an application.

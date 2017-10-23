@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+		   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		   xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+	<services>
+		<!-- Resources -->
+		<service id="hautelook_alice.odm_data_fixtures.loader.file_resolver_loader"
+				 class="Fidry\AliceDataFixtures\Loader\FileResolverLoader">
+			<argument type="service" id="fidry_alice_data_fixtures.doctrine_mongodb.purger_loader" />
+			<argument type="service" id="hautelook_alice.resolver.file" />
+		</service>
+
+		<service id="hautelook_alice.odm_data_fixtures.loader"
+				 alias="fidry_alice_data_fixtures.doctrine_mongodb.persister_loader" />
+
+		<!-- HautelookAliceBundle -->
+		<service id="hautelook_alice.loader.doctrine_odm_loader"
+				 class="Hautelook\AliceBundle\Loader\DoctrineOdmLoader">
+			<argument type="service" id="hautelook_alice.resolver.bundle" />
+			<argument type="service" id="hautelook_alice.locator" />
+			<argument type="service" id="hautelook_alice.odm_data_fixtures.loader" />
+			<argument type="service" id="logger" />
+		</service>
+
+		<service id="hautelook_alice.odm_loader"
+				 alias="hautelook_alice.loader.doctrine_odm_loader" />
+	</services>
+
+</container>

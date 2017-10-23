@@ -12,7 +12,7 @@
 namespace Hautelook\AliceBundle\Console\Command\Doctrine;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Hautelook\AliceBundle\LoaderInterface as AliceBundleLoaderInterface;
+use Hautelook\AliceBundle\OrmLoaderInterface as AliceBundleLoaderInterface;
 use Symfony\Bundle\FrameworkBundle\Console\Application as FrameworkBundleConsoleApplication;
 use Symfony\Component\Console\Application as ConsoleApplication;
 use Symfony\Component\Console\Command\Command;

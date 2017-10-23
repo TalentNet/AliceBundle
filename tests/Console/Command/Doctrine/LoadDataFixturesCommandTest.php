@@ -14,8 +14,8 @@ namespace Hautelook\AliceBundle\Console\Command\Doctrine;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Hautelook\AliceBundle\HttpKernel\DummyKernel;
 use Hautelook\AliceBundle\Persistence\ObjectMapper\FakeEntityManager;
-use Hautelook\AliceBundle\Loader\FakeLoader;
-use Hautelook\AliceBundle\LoaderInterface;
+use Hautelook\AliceBundle\Loader\FakeOrmLoader;
+use Hautelook\AliceBundle\OrmLoaderInterface;
 use Hautelook\AliceBundle\Persistence\FakeDoctrineManagerRegistry;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
@@ -41,7 +41,7 @@ class LoadDataFixturesCommandTest extends \PHPUnit_Framework_TestCase
     {
         $application = new FrameworkBundleConsoleApplication(new DummyKernel());
 
-        $command = new DoctrineOrmLoadDataFixturesCommand('dummy', new FakeDoctrineManagerRegistry(), new FakeLoader());
+        $command = new DoctrineOrmLoadDataFixturesCommand('dummy', new FakeDoctrineManagerRegistry(), new FakeOrmLoader());
         $command->setApplication($application);
 
         $this->assertSame($application, $command->getApplication());
@@ -49,7 +49,7 @@ class LoadDataFixturesCommandTest extends \PHPUnit_Framework_TestCase
 
     public function testCanResetTheCommandApplication()
     {
-        $command = new DoctrineOrmLoadDataFixturesCommand('dummy', new FakeDoctrineManagerRegistry(), new FakeLoader());
+        $command = new DoctrineOrmLoadDataFixturesCommand('dummy', new FakeDoctrineManagerRegistry(), new FakeOrmLoader());
         $command->setApplication(null);
     }
 
@@ -59,7 +59,7 @@ class LoadDataFixturesCommandTest extends \PHPUnit_Framework_TestCase
      */
     public function testThrowsAnExceptionIfInvalidApplicationIsGiven()
     {
-        $command = new DoctrineOrmLoadDataFixturesCommand('dummy', new FakeDoctrineManagerRegistry(), new FakeLoader());
+        $command = new DoctrineOrmLoadDataFixturesCommand('dummy', new FakeDoctrineManagerRegistry(), new FakeOrmLoader());
         $command->setApplication(new ConsoleApplication());
     }
 
@@ -79,13 +79,13 @@ class LoadDataFixturesCommandTest extends \PHPUnit_Framework_TestCase
         /** @var ManagerRegistry $managerRegistry */
         $managerRegistry = $managerRegistryProphecy->reveal();
 
-        /** @var LoaderInterface|ObjectProphecy $loaderProphecy */
-        $loaderProphecy = $this->prophesize(LoaderInterface::class);
+        /** @var OrmLoaderInterface|ObjectProphecy $loaderProphecy */
+        $loaderProphecy = $this->prophesize(OrmLoaderInterface::class);
         $loaderProphecy
             ->load($application, $manager, [], 'fake_env', false, false, null)
             ->shouldBeCalled()
         ;
-        /** @var LoaderInterface $loader */
+        /** @var OrmLoaderInterface $loader */
         $loader = $loaderProphecy->reveal();
 
         $command = new DoctrineOrmLoadDataFixturesCommand('dummy', $managerRegistry, $loader);
@@ -122,13 +122,13 @@ class LoadDataFixturesCommandTest extends \PHPUnit_Framework_TestCase
         /** @var ManagerRegistry $managerRegistry */
         $managerRegistry = $managerRegistryProphecy->reveal();
 
-        /** @var LoaderInterface|ObjectProphecy $loaderProphecy */
-        $loaderProphecy = $this->prophesize(LoaderInterface::class);
+        /** @var OrmLoaderInterface|ObjectProphecy $loaderProphecy */
+        $loaderProphecy = $this->prophesize(OrmLoaderInterface::class);
         $loaderProphecy
             ->load($application, $manager, ['ABundle', 'BBundle'], 'dummy_env', true, true, 'shard_id')
             ->shouldBeCalled();
         ;
-        /** @var LoaderInterface $loader */
+        /** @var OrmLoaderInterface $loader */
         $loader = $loaderProphecy->reveal();
 
         $command = new DoctrineOrmLoadDataFixturesCommand('dummy', $managerRegistry, $loader);

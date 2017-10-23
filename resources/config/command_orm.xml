@@ -8,7 +8,7 @@
                  class="Hautelook\AliceBundle\Console\Command\Doctrine\DoctrineOrmLoadDataFixturesCommand">
             <argument type="string">hautelook:fixtures:load</argument>
             <argument type="service" id="doctrine" />
-            <argument type="service" id="hautelook_alice.loader" />
+            <argument type="service" id="hautelook_alice.orm_loader" />
 
             <tag name="console.command" />
         </service>

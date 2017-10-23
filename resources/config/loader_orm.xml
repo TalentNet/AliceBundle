@@ -5,13 +5,13 @@
 
     <services>
         <!-- Resources -->
-        <service id="hautelook_alice.data_fixtures.loader.file_resolver_loader"
+        <service id="hautelook_alice.orm_data_fixtures.loader.file_resolver_loader"
                  class="Fidry\AliceDataFixtures\Loader\FileResolverLoader">
             <argument type="service" id="fidry_alice_data_fixtures.doctrine.purger_loader" />
             <argument type="service" id="hautelook_alice.resolver.file" />
         </service>
 
-        <service id="hautelook_alice.data_fixtures.loader"
+        <service id="hautelook_alice.orm_data_fixtures.loader"
                  alias="fidry_alice_data_fixtures.doctrine.persister_loader" />
 
         <!-- HautelookAliceBundle -->
@@ -19,11 +19,11 @@
                  class="Hautelook\AliceBundle\Loader\DoctrineOrmLoader">
             <argument type="service" id="hautelook_alice.resolver.bundle" />
             <argument type="service" id="hautelook_alice.locator" />
-            <argument type="service" id="hautelook_alice.data_fixtures.loader" />
+            <argument type="service" id="hautelook_alice.orm_data_fixtures.loader" />
             <argument type="service" id="logger" />
         </service>
 
-        <service id="hautelook_alice.loader"
+        <service id="hautelook_alice.orm_loader"
                  alias="hautelook_alice.loader.doctrine_orm_loader" />
     </services>
 
