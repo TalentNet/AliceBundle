@@ -1,9 +1,16 @@
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+        <!-- Resources -->
+        <service id="hautelook_alice.data_fixtures.loader.file_resolver_loader"
+                 class="Fidry\AliceDataFixtures\Loader\FileResolverLoader">
+            <argument type="service" id="fidry_alice_data_fixtures.doctrine.purger_loader" />
+            <argument type="service" id="hautelook_alice.resolver.file" />
+        </service>
+
         <!-- Bundle -->
         <service id="hautelook_alice.resolver.bundle.simple_resolver"
                  class="Hautelook\AliceBundle\Resolver\Bundle\SimpleBundleResolver">
